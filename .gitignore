@@ -1,0 +1,11 @@
+venv/
+.env
+.env.*
+
+.pytest_cache/
+__pycache__/
+
+.DS_Store
+
+# storing the database layout
+# models.py
