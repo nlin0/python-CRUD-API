@@ -1,1 +1,1 @@
-# Simple Python CRUD
+# Python CRUD-style API access
