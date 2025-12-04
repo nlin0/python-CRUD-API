@@ -2,11 +2,6 @@ from sqlalchemy.orm import Session
 
 from app import models, schemas
 
-
-############################
-#     VEHICLE FUNCTIONS    #
-############################
-
 def add_vehicle(db: Session, vehicle_data: schemas.VehicleCreate):
   """
   adds a new vehicle to the database
