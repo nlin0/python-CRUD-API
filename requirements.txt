@@ -4,4 +4,5 @@ sqlalchemy
 psycopg2
 pydantic
 pytest
-python-dotenv # may not need.. for env vars
+httpx
+python-dotenv

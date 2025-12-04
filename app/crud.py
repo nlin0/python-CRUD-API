@@ -34,9 +34,10 @@ def get_vehicle(db: Session, vin: str):
       db (Session): _description_
       vin (str): _description_
   """
+  # normalize vin to lowercase since model validator stores it lowercase
   return (
     db.query(models.Vehicle)
-      .filter(models.Vehicle.vin == vin.upper())
+      .filter(models.Vehicle.vin == vin.lower())
       .first()
   )
 
@@ -64,8 +65,14 @@ def update_vehicle(db: Session, vin: str, vehicle_data: schemas.VehicleUpdate):
       db (Session): _description_
       vin (str): _description_
       vehicle_data (schemas.VehicleUpdate): _description_
+
+  Returns:
+      models.Vehicle | None: the updated vehicle if found, None otherwise
   """
   vehicle = get_vehicle(db, vin)
+  
+  if not vehicle:
+    return None
   
   # PUT = replace all
   vehicle.manufacturer_name = vehicle_data.manufacturer_name
@@ -83,7 +90,7 @@ def update_vehicle(db: Session, vin: str, vehicle_data: schemas.VehicleUpdate):
 
 def delete_vehicle(db: Session, vin: str):
   """
-  removes vehicle asccoaited with vin from database
+  removes vehicle associated with vin from database
 
   Args:
       db (Session): _description_

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, field_serializer
 from decimal import Decimal
 
 class VehicleBase(BaseModel):
@@ -12,10 +12,17 @@ class VehicleBase(BaseModel):
   purchase_price: Decimal
   fuel_type: str
 
+  @field_serializer('purchase_price')
+  def serialize_price(self, value: Decimal) -> float:
+    """
+    Serialize Decimal to float for JSON (standard for currency in REST APIs)
+    """
+    return float(value)
+
 
 class VehicleCreate(VehicleBase):
   # adds VIN and makes sure it is lowercase
-  # VIN must be exactly 17 characters (standard VIN length)
+  # VIN must be between 5 and 17 characters
   vin: str = Field(..., min_length=5, max_length=17)
   
   @field_validator("vin")
