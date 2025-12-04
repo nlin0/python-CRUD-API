@@ -15,7 +15,8 @@ class VehicleBase(BaseModel):
 
 class VehicleCreate(VehicleBase):
   # adds VIN and makes sure it is lowercase
-  vin: str = Field(..., min_length=1, max_length=17)
+  # VIN must be exactly 17 characters (standard VIN length)
+  vin: str = Field(..., min_length=5, max_length=17)
   
   @field_validator("vin")
   @classmethod
@@ -38,6 +39,4 @@ class VehicleUpdate(VehicleBase):
 class VehicleRead(VehicleBase):
   vin: str
 
-  #
-  class Config:
-    from_attributes = True
+  model_config = {"from_attributes": True}
