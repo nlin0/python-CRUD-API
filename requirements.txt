@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2
+pydantic
+pytest
+python-dotenv # may not need.. for env vars
