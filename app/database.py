@@ -28,6 +28,10 @@ def get_db():
     db = Session()
     try:
         yield db
-    finally: # runs always
+    except Exception:
+        # rollback if exception occurs before crud commits
+        db.rollback()
+        raise
+    finally:  # runs always
         db.close()
 
