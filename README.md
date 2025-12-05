@@ -123,6 +123,17 @@ pytest tests/ -v
 pytest tests/test_vehicles.py
 ```
 
+## Tech Stack
+
+The application uses:
+
+- **FastAPI** for the web framework
+- **SQLAlchemy** for ORM
+- **Pydantic** for data validation
+- **PostgreSQL** for the database
+- **pytest** for testing
+
+
 ## API Endpoints
 
 | Method | Endpoint | Description | Status Code |
@@ -174,16 +185,6 @@ The `vehicles` table includes:
 ├── pytest.ini
 └── README.md
 ```
-
-## Development
-
-The application uses:
-
-- **FastAPI** for the web framework
-- **SQLAlchemy** for ORM
-- **Pydantic** for data validation
-- **PostgreSQL** for the database
-- **pytest** for testing
 
 ## Notes
 
